@@ -5,7 +5,37 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Mangas.mdf" />
+    <None Remove="Mangas_log.ldf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Mangas.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Mangas_log.ldf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\QHI7OE_HFT_2022232.Models\QHI7OE_HFT_2022232.Models.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="GenericRepository\" />
+    <Folder Include="ModelRepository\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.14" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="5.0.14" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.14" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="5.0.14" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.14">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
 </Project>
