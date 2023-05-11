@@ -17,13 +17,21 @@ namespace QHI7OE_HFT_2022232.Models
 
         [Required]
         [StringLength(50)]
-        public int AuthorName { get; set; }
+        public string AuthorName { get; set; }
 
         public virtual ICollection<Manga> Mangas { get; set; }
 
         public Author()
         {
-           this.Mangas = new HashSet<Manga>();
+           Mangas = new HashSet<Manga>();
+        }
+
+        public Author(string line)
+        {
+            string[] split = line.Split('#');
+            AuthorId = int.Parse(split[0]);
+            AuthorName = split[1];
+            Mangas = new HashSet<Manga>();
         }
     }
 }

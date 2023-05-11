@@ -16,13 +16,20 @@ namespace QHI7OE_HFT_2022232.Models
         [Required]
         public string GenreName { get; set; }
 
-        public int MangaId { get; set; }
+        //public int MangaId { get; set; }
 
         public virtual ICollection<Manga> Mangas { get; set; }
 
         public Genre()
         {
-              this.Mangas = new HashSet<Manga>();
+              Mangas = new HashSet<Manga>();
+        }
+        public Genre(string line)
+        {
+            string[] split = line.Split('#');
+            GenreId = int.Parse(split[0]);
+            GenreName = split[1];
+            Mangas = new HashSet<Manga>();
         }
 
     }

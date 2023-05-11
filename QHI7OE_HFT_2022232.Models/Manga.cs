@@ -39,5 +39,17 @@ namespace QHI7OE_HFT_2022232.Models
         {
 
         }
+
+        public Manga(string line)
+        {
+            string[] split = line.Split ('#');
+            MangaId = int.Parse (split[0]);
+            Title = split[1];
+            Price = double.Parse(split[2]);
+            Rating = int.Parse (split[3]);
+            Release = DateTime.Parse (split[4].Replace('*', '.'));
+            AuthorId = int.Parse (split[5]);
+            GenreId = int.Parse (split[6]);
+        }
     }
 }
