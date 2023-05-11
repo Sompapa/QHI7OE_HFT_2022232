@@ -23,7 +23,7 @@ namespace QHI7OE_HFT_2022232.Models
 
         public Author()
         {
-            Mangas = new HashSet<Manga>();
+           this.Mangas = new HashSet<Manga>();
         }
     }
 }

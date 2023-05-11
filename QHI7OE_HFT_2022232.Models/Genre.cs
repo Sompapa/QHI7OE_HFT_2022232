@@ -20,5 +20,10 @@ namespace QHI7OE_HFT_2022232.Models
 
         public virtual ICollection<Manga> Mangas { get; set; }
 
+        public Genre()
+        {
+              this.Mangas = new HashSet<Manga>();
+        }
+
     }
 }
