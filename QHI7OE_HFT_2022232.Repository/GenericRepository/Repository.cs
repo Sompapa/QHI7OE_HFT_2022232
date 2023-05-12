@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace QHI7OE_HFT_2022232.Repository
 {
-    public abstract class Repository<T>:MangaIRepository<T> where T : class
+    public abstract class Repository<T>:IRepository<T> where T : class
     {
         protected MangaDbContext ctx;
         public Repository(MangaDbContext ctx)

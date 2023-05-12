@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace QHI7OE_HFT_2022232.Repository
 {
-    public class AuthorRepository : Repository<Author>, MangaIRepository<Author>
+    public class AuthorRepository : Repository<Author>, IRepository<Author>
     {
         public AuthorRepository(MangaDbContext ctx) : base(ctx)
         {

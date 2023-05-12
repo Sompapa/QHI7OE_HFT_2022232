@@ -20,7 +20,7 @@ namespace QHI7OE_HFT_2022232.Models
         [StringLength(240)]
         public string Title { get; set; }
 
-        public double Price { get; set; }
+        public double? Price { get; set; }
 
         [Range (0, 10)]
         public double Rating { get; set; }
