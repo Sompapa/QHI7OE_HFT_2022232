@@ -6,6 +6,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using QHI7OE_HFT_2022232.Logic;
+using QHI7OE_HFT_2022232.Models;
+using QHI7OE_HFT_2022232.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +28,16 @@ namespace QHI7OE_HFT_2022232.Endpoint
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddTransient<MangaDbContext>();
+
+            services.AddTransient<IRepository<Manga>, MangaRepository>();
+            services.AddTransient<IRepository<Author>, AuthorRepository>();
+            services.AddTransient<IRepository<Genre>, GenreRepository>();
+
+            services.AddTransient<IMangaLogic, MangaLogic>();
+            services.AddTransient<IAuthorLogic, AuthorLogic>();
+            services.AddTransient<IGenreLogic, GenreLogic>();
+
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
