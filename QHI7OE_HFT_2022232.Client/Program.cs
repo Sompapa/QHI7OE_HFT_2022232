@@ -167,7 +167,7 @@ namespace QHI7OE_HFT_2022232.Client
             var authorLogic = new AuthorLogic(authorRepo);
             var genreLogic = new GenreLogic(genreRepo);
 
-            var valami = mangaLogic.AVGPriceByYears().ToArray();
+            var valami = mangaLogic.AVGRateByGenre().ToArray();
 
             ;
 

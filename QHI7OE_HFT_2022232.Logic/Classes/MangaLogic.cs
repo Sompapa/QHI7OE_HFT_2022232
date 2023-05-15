@@ -41,13 +41,15 @@ namespace QHI7OE_HFT_2022232.Logic
                    (g.Key, g.Sum(t => t.Price) ?? -1);
         }
 
-        public IEnumerable<KeyValuePair<DateTime, double>> AVGPriceByYears()
+        public IEnumerable<KeyValuePair<DateTime, double>> AVGPriceByYears(/*int year*/)
         {
             return from manga in repo.ReadAll()
+                   //.Where(t=>t.Release.Year==year)
                    group manga by manga.Release into g
                    select new KeyValuePair<DateTime, double>
                    (g.Key, g.Average(t => t.Price) ?? -1);
         }
+
 
         public IEnumerable<KeyValuePair<DateTime, double>> AllPriceByYears()
         {
@@ -55,6 +57,14 @@ namespace QHI7OE_HFT_2022232.Logic
                    group manga by manga.Release into g
                    select new KeyValuePair<DateTime, double>
                    (g.Key, g.Sum(t => t.Price) ?? -1);
+        }
+
+        public IEnumerable<KeyValuePair<string, double>> AVGRateByGenre()
+        {
+            return from manga in repo.ReadAll()
+                   group manga by manga.Genre.GenreName into g
+                   select new KeyValuePair<string, double>
+                   (g.Key, g.Average(t => t.Rating) ?? -1);
         }
         public void Create(Manga item)
         {

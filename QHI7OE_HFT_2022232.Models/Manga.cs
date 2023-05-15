@@ -23,7 +23,7 @@ namespace QHI7OE_HFT_2022232.Models
         public double? Price { get; set; }
 
         [Range (0, 10)]
-        public double Rating { get; set; }
+        public double? Rating { get; set; }
 
         public DateTime Release { get; set; }
 

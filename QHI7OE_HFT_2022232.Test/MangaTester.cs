@@ -36,7 +36,7 @@ namespace QHI7OE_HFT_2022232.Test
                     MangaId = 1,
                     Title = "Fakeo no Mockery",
                     Price = 9,
-                    Rating = 0.2,
+                    Rating = 4.2,
                     Release = DateTime.Now,
                     AuthorId = 100,
                     GenreId = 100,
@@ -50,7 +50,7 @@ namespace QHI7OE_HFT_2022232.Test
                     MangaId = 2,
                     Title = "Mockery senpai",
                     Price = 11,
-                    Rating = 8.9,
+                    Rating = 7.8,
                     Release = DateTime.Now,
                     AuthorId = 100,
                     GenreId = 100,
@@ -64,7 +64,7 @@ namespace QHI7OE_HFT_2022232.Test
                     MangaId = 3,
                     Title = "Fakera Mockoratary",
                     Price = 7,
-                    Rating = 6.3,
+                    Rating = 3,
                     Release = DateTime.Now,
                     AuthorId = 100,
                     GenreId = 100,
@@ -87,19 +87,11 @@ namespace QHI7OE_HFT_2022232.Test
         }
 
         [Test]
-        public void AllPriceByYearsTest()
+        public void AVGRateByGenreTest()
         {
-            var results = logic.AllPriceByYears();
+            var results = logic.AVGRateByGenre();
 
-            Assert.That(results.Where(x => x.Key == DateTime.Now), Is.EqualTo(results.Where(x => x.Value == 27)));
-        }
-
-        [Test]
-        public void AVGPriceByYearsTest()
-        {
-            var results = logic.AVGPriceByYears();
-
-            Assert.That(results.Where(x => x.Key == DateTime.Now), Is.EqualTo(results.Where(x => x.Value == 9)));
+            Assert.That(results.Where(x => x.Key == "Fake Mockery"), Is.EqualTo(results.Where( x => x.Value == 5)));
         }
 
         [Test]
@@ -116,6 +108,14 @@ namespace QHI7OE_HFT_2022232.Test
             var results = logic.AVGPriceByGenre();
 
             Assert.That(results.Where(x => x.Key == "Fake Mockery"), Is.EqualTo(results.Where(x => x.Value == 9)));
+        }
+
+        [Test]
+        public void AllPriceByYearsTest()
+        {
+            var results = logic.AllPriceByYears();
+
+            Assert.That(results.Where(x => x.Key == DateTime.Now), Is.EqualTo(results.Where(x => x.Value == 27)));
         }
 
         [Test]
