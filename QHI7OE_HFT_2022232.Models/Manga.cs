@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace QHI7OE_HFT_2022232.Models
@@ -31,8 +32,10 @@ namespace QHI7OE_HFT_2022232.Models
 
         public int GenreId { get; set; }
 
+        
         public virtual Author Author { get; set; }
 
+        
         public virtual Genre Genre { get; set; }
 
         public Manga()

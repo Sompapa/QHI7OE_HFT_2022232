@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace QHI7OE_HFT_2022232.Models
 {
@@ -18,6 +19,7 @@ namespace QHI7OE_HFT_2022232.Models
 
         //public int MangaId { get; set; }
 
+        [JsonIgnore]
         public virtual ICollection<Manga> Mangas { get; set; }
 
         public Genre()

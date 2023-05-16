@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace QHI7OE_HFT_2022232.Models
@@ -19,6 +20,7 @@ namespace QHI7OE_HFT_2022232.Models
         [StringLength(50)]
         public string AuthorName { get; set; }
 
+        [JsonIgnore]
         public virtual ICollection<Manga> Mangas { get; set; }
 
         public Author()
