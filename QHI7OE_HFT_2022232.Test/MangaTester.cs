@@ -148,9 +148,8 @@ namespace QHI7OE_HFT_2022232.Test
               .Returns(value: null);
 
             Assert.Throws<ArgumentException>(() => logic.Read(1));
-
-
         }
+
         [Test]
         public void ReadAllTest()
         {
@@ -158,12 +157,12 @@ namespace QHI7OE_HFT_2022232.Test
 
             Assert.That(v, Is.EqualTo(3));
         }
+
         [Test]
         public void UpdateTest()
         {
             Assert.That(() => logic.Read(0), Throws.TypeOf<ArgumentException>());
             Assert.That(() => logic.Read(4), Throws.TypeOf<ArgumentException>());
-
         }
 
     }
