@@ -21,6 +21,8 @@ namespace QHI7OE_HFT_2022232.Client
                 Console.WriteLine("Enter Author name:");
                 string name = Console.ReadLine();
                 rest.Post(new Author() { AuthorId = id, AuthorName = name }, "author");
+                Console.WriteLine("New Author Created: " + id + ", " + name);
+                Console.ReadLine();
             }
             else if (entity == "Manga")
             {
@@ -38,7 +40,9 @@ namespace QHI7OE_HFT_2022232.Client
                 int authorid = int.Parse(Console.ReadLine());
                 Console.WriteLine("Enter Genre ID: ");
                 int genreid = int.Parse(Console.ReadLine());
-                rest.Post(new Manga() { MangaId = id, Title = title, Price = price, Rating =rating, Release = reales, AuthorId = authorid, GenreId = genreid }, "manga");
+                rest.Post(new Manga() { MangaId = id, Title = title, Price = price, Rating = rating, Release = reales, AuthorId = authorid, GenreId = genreid }, "manga");
+                Console.WriteLine("New Manga Created: " + id + ", " + title);
+                Console.ReadLine();
             }
             else if (entity == "Genre")
             {
@@ -47,6 +51,8 @@ namespace QHI7OE_HFT_2022232.Client
                 Console.WriteLine("Enter Genre name:");
                 string name = Console.ReadLine();
                 rest.Post(new Genre() { GenreId = id, GenreName = name }, "genre");
+                Console.WriteLine("New Genre Created: " + id + ", " + name);
+                Console.ReadLine();
             }
         }
         static void List(string entity)
@@ -89,6 +95,8 @@ namespace QHI7OE_HFT_2022232.Client
                 string name = Console.ReadLine();
                 one.AuthorName = name;
                 rest.Put(one, "author");
+                Console.WriteLine("Authors Updated");
+                Console.ReadLine();
             }
             else if (entity == "Manga")
             {
@@ -99,6 +107,8 @@ namespace QHI7OE_HFT_2022232.Client
                 double price = double.Parse(Console.ReadLine());
                 one.Price = price;
                 rest.Put(one, "manga");
+                Console.WriteLine("Mangas Updated");
+                Console.ReadLine();
             }
             else if (entity == "Genre")
             {
@@ -109,6 +119,8 @@ namespace QHI7OE_HFT_2022232.Client
                 string name = Console.ReadLine();
                 one.GenreName = name;
                 rest.Put(one, "genre");
+                Console.WriteLine("Genres Updated");
+                Console.ReadLine();
             }
         }
         static void Delete(string entity)
@@ -118,18 +130,25 @@ namespace QHI7OE_HFT_2022232.Client
                 Console.WriteLine("Enter Author ID to delete: ");
                 int id = int.Parse(Console.ReadLine());
                 rest.Delete(id, "author");
+                Console.WriteLine("Author Deleted on ID: " +id);
+                Console.ReadLine();
+
             }
             else if (entity == "Manga")
             {
                 Console.WriteLine("Enter Manga ID to delete: ");
                 int id = int.Parse(Console.ReadLine());
                 rest.Delete(id, "manga");
+                Console.WriteLine("Manga Deleted on ID: " +id);
+                Console.ReadLine();
             }
             else if (entity == "Genre")
             {
                 Console.WriteLine("Enter Genre ID to delete: ");
                 int id = int.Parse(Console.ReadLine());
                 rest.Delete(id, "genre");
+                Console.WriteLine("Genre Deleted on ID" + id);
+                Console.ReadLine();
             }
         }
         static void StatMethods(string entity)
