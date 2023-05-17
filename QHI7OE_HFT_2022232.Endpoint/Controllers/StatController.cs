@@ -31,12 +31,6 @@ namespace QHI7OE_HFT_2022232.Endpoint.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<KeyValuePair<DateTime, double>> AVGPriceByYears()
-        {
-            return this.logic.AVGPriceByYears();
-        }
-
-        [HttpGet]
         public IEnumerable<KeyValuePair<DateTime, double>> AllPriceByYears()
         {
             return this.logic.AllPriceByYears();

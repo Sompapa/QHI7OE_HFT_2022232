@@ -95,7 +95,7 @@ namespace QHI7OE_HFT_2022232.Test
         }
 
         [Test]
-        public void AllPriceByGenre()
+        public void AllPriceByGenreTest()
         {
             var results = logic.AllPriceByGenre();
 

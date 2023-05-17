@@ -142,7 +142,7 @@ namespace QHI7OE_HFT_2022232.Client
                     Console.WriteLine(item.Key + ": "+ item.Value);
                 }
             }
-            else if (entity == "stat/avgPriceByYears" || entity == "stat/allPriceByYears")
+            else if (entity == "stat/allPriceByYears")
             {
                 var mangas = rest.Get<KeyValuePair<DateTime, double>>(entity);
                 foreach (var item in mangas)
@@ -183,10 +183,11 @@ namespace QHI7OE_HFT_2022232.Client
                .Add("Exit", ConsoleMenu.Close);
 
             var nonCrudSubMenu = new ConsoleMenu(args, level: 1)
-               .Add("List", () => List("Manga"))
-               .Add("Create", () => Create("Manga"))
-               .Add("Delete", () => Delete("Manga"))
-               .Add("Update", () => Update("Manga"))
+               .Add("AVG Price By Author", () => StatMethods("stat/avgPriceByAuthor"))
+               .Add("AVG Price By Genre", () => StatMethods("stat/avgPriceByGenre"))
+               .Add("All Price By Genre", () => StatMethods("stat/allPriceByGenre"))
+               .Add("All Price By Years", () => StatMethods("stat/allPriceByYears"))
+               .Add("AVG Rate By Genre", ()=> StatMethods("stat/avgRateByGenre"))
                .Add("Exit", ConsoleMenu.Close);
 
             var menu = new ConsoleMenu(args, level: 0)
