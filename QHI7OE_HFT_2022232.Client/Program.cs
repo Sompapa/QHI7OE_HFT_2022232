@@ -95,7 +95,7 @@ namespace QHI7OE_HFT_2022232.Client
                 string name = Console.ReadLine();
                 one.AuthorName = name;
                 rest.Put(one, "author");
-                Console.WriteLine("Authors Updated");
+                Console.WriteLine("Author Updated");
                 Console.ReadLine();
             }
             else if (entity == "Manga")
@@ -107,7 +107,7 @@ namespace QHI7OE_HFT_2022232.Client
                 double price = double.Parse(Console.ReadLine());
                 one.Price = price;
                 rest.Put(one, "manga");
-                Console.WriteLine("Mangas Updated");
+                Console.WriteLine("Manga Updated");
                 Console.ReadLine();
             }
             else if (entity == "Genre")
@@ -119,7 +119,7 @@ namespace QHI7OE_HFT_2022232.Client
                 string name = Console.ReadLine();
                 one.GenreName = name;
                 rest.Put(one, "genre");
-                Console.WriteLine("Genres Updated");
+                Console.WriteLine("Genre Updated");
                 Console.ReadLine();
             }
         }
