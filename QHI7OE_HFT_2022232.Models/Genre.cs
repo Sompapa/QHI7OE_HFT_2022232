@@ -17,8 +17,6 @@ namespace QHI7OE_HFT_2022232.Models
         [Required]
         public string GenreName { get; set; }
 
-        //public int MangaId { get; set; }
-
         [JsonIgnore]
         public virtual ICollection<Manga> Mangas { get; set; }
 
