@@ -183,11 +183,11 @@ namespace QHI7OE_HFT_2022232.Client
                .Add("Exit", ConsoleMenu.Close);
 
             var nonCrudSubMenu = new ConsoleMenu(args, level: 1)
-               .Add("AVG Price By Author", () => StatMethods("stat/avgPriceByAuthor"))
-               .Add("AVG Price By Genre", () => StatMethods("stat/avgPriceByGenre"))
-               .Add("All Price By Genre", () => StatMethods("stat/allPriceByGenre"))
-               .Add("All Price By Years", () => StatMethods("stat/allPriceByYears"))
-               .Add("AVG Rate By Genre", ()=> StatMethods("stat/avgRateByGenre"))
+               .Add("AVG Manga Prices By Author", () => StatMethods("stat/avgPriceByAuthor"))
+               .Add("AVG Manga Prices By Genre", () => StatMethods("stat/avgPriceByGenre"))
+               .Add("SUM Manga Prices By Genre", () => StatMethods("stat/allPriceByGenre"))
+               .Add("SUM Manga Prices By Years", () => StatMethods("stat/allPriceByYears"))
+               .Add("AVG Manga Rating By Genre", ()=> StatMethods("stat/avgRateByGenre"))
                .Add("Exit", ConsoleMenu.Close);
 
             var menu = new ConsoleMenu(args, level: 0)
