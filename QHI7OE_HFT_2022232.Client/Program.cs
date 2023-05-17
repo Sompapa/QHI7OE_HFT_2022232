@@ -96,7 +96,7 @@ namespace QHI7OE_HFT_2022232.Client
                 int id = int.Parse(Console.ReadLine());
                 Manga one = rest.Get<Manga>(id, "manga");
                 Console.WriteLine($"New price [old: {one.Price}]: ");
-                int price = int.Parse(Console.ReadLine());
+                double price = double.Parse(Console.ReadLine());
                 one.Price = price;
                 rest.Put(one, "manga");
             }
