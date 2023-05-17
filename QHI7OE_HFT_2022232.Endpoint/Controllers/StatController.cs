@@ -3,8 +3,6 @@ using QHI7OE_HFT_2022232.Logic;
 using System;
 using System.Collections.Generic;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace QHI7OE_HFT_2022232.Endpoint.Controllers
 {
     [Route("[controller]/[action]")]
