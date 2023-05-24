@@ -15,7 +15,7 @@ namespace QHI7OE_HFT_2022232.Logic
             this.repo = repo;
         }
 
-        //non crud
+        //non cruds
 
         public IEnumerable<KeyValuePair<string, double>> AVGPriceByAuthor()
         {

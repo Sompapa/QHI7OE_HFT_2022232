@@ -37,9 +37,6 @@ namespace QHI7OE_HFT_2022232.Repository
                 .HasForeignKey(authors => authors.AuthorId)
                 .OnDelete(DeleteBehavior.ClientSetNull);
 
-                // - DeleteBehavior.ClientSetNull: Csak olyan márkára engedi kiadni a törlést, amire nincs hivatkozás. Egyéb esetben, elszállna kivétellel.
-                // - DeleteBehavior.Cascade: Ha törölsz egy márkát, akkor automatikusan az összes ilyen márkájú autót is törli.
-
                 mangas
                 .HasOne(mangas => mangas.Genre)
                 .WithMany(genres => genres.Mangas)
