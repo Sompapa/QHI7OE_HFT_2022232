@@ -210,11 +210,11 @@ namespace QHI7OE_HFT_2022232.Client
                .Add("Exit", ConsoleMenu.Close);
 
             var menu = new ConsoleMenu(args, level: 0)
-                .Add("Mangas", ()=> mangaSubMenu.Show())
-                .Add("Author", ()=> authorSubMenu.Show())
-                .Add("Genre", ()=> genreSubMenu.Show())
-                .Add("Other functions", ()=> nonCrudSubMenu.Show())
-                .Add("Exit", ConsoleMenu.Close);
+                .Add("MANGAS", ()=> mangaSubMenu.Show())
+                .Add("AUTHORS", ()=> authorSubMenu.Show())
+                .Add("GENRES", ()=> genreSubMenu.Show())
+                .Add("OTHER FUNCTIONS", ()=> nonCrudSubMenu.Show())
+                .Add("EXIT", ConsoleMenu.Close);
 
             menu.Show();
         }
