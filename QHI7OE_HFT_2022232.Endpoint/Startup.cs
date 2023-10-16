@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using QHI7OE_HFT_2022232.Endpoint.Services;
 using QHI7OE_HFT_2022232.Logic;
 using QHI7OE_HFT_2022232.Models;
 using QHI7OE_HFT_2022232.Repository;
@@ -37,6 +38,8 @@ namespace QHI7OE_HFT_2022232.Endpoint
             services.AddTransient<IAuthorLogic, AuthorLogic>();
             services.AddTransient<IGenreLogic, GenreLogic>();
 
+            services.AddSignalR();
+
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -61,6 +64,7 @@ namespace QHI7OE_HFT_2022232.Endpoint
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<SignalRHub>("/hub");
             });
         }
     }
