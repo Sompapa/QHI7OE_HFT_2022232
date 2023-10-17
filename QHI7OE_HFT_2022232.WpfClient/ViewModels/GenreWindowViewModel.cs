@@ -10,10 +10,11 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
-namespace QHI7OE_HFT_2022232.WpfClient
+namespace QHI7OE_HFT_2022232.WpfClient.ViewModels
 {
-    public class MainWindowViewModel : ObservableRecipient
+    public class GenreWindowViewModel : ObservableRecipient
     {
+
         private string errorMessage;
 
         public string ErrorMessage
@@ -22,34 +23,32 @@ namespace QHI7OE_HFT_2022232.WpfClient
             set { SetProperty(ref errorMessage, value); }
         }
 
+        public RestCollection<Genre> Genres { get; set; }
+        private Genre selectedGenre;
 
-        public RestCollection<Author> Authors { get; set; }
-
-        private Author selectedAuthor;
-
-        public Author SelectedAuthor
+        public Genre SelectedGenre
         {
-            get { return selectedAuthor; }
+            get { return selectedGenre; }
             set
             {
                 if (value != null)
                 {
-
-                    selectedAuthor = new Author()
+                    selectedGenre = new Genre()
                     {
-                        AuthorName = value.AuthorName,
-                        AuthorId = value.AuthorId,
+                        GenreId = value.GenreId,
+                        GenreName = value.GenreName,
+                        Mangas = value.Mangas
                     };
-                    SetProperty(ref selectedAuthor, value);
-                    (DeleteAuthorCommand as RelayCommand).NotifyCanExecuteChanged();
+                    SetProperty(ref selectedGenre, value);
+                    (DeleteGenreCommand as RelayCommand).NotifyCanExecuteChanged();
+
                 }
             }
         }
 
-
-        public ICommand CreateAuthorCommand { get; set; }
-        public ICommand DeleteAuthorCommand { get; set; }
-        public ICommand UpdateAuthorCommand { get; set; }
+        public ICommand CreateGenreCommand { get; set; }
+        public ICommand DeleteGenreCommand { get; set; }
+        public ICommand UpdateGenreCommand { get; set; }
 
         public static bool IsInDesingnMode
         {
@@ -60,41 +59,41 @@ namespace QHI7OE_HFT_2022232.WpfClient
             }
         }
 
-        public MainWindowViewModel()
+        public GenreWindowViewModel()
         {
-            SelectedAuthor = new Author();
+            SelectedGenre = new Genre();
             if (!IsInDesingnMode)
             {
+                Genres = new RestCollection<Genre>("http://localhost:59073/", "manga", "hub");
 
-
-                Authors = new RestCollection<Author>("http://localhost:59073/", "author", "hub");
-                CreateAuthorCommand = new RelayCommand(() =>
+                CreateGenreCommand = new RelayCommand(() =>
                 {
-                    Authors.Add(new Author()
+                    Genres.Add(new Genre()
                     {
-                        AuthorName = SelectedAuthor.AuthorName,
+                        GenreName = SelectedGenre.GenreName,
                     });
                 });
 
-                UpdateAuthorCommand = new RelayCommand(() =>
+                UpdateGenreCommand = new RelayCommand(() =>
                 {
                     try
                     {
-                        Authors.Update(SelectedAuthor);
+                        Genres.Update(SelectedGenre);
                     }
                     catch (ArgumentException ex)
                     {
                         ErrorMessage = ex.Message;
+                        throw;
                     }
                 });
 
-                DeleteAuthorCommand = new RelayCommand(() =>
+                DeleteGenreCommand = new RelayCommand(() =>
                 {
-                    Authors.Delete(SelectedAuthor.AuthorId);
+                    Genres.Delete(SelectedGenre.GenreId);
                 },
                 () =>
                 {
-                    return SelectedAuthor != null;
+                    return SelectedGenre != null;
                 });
             }
         }
