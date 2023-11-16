@@ -62,6 +62,31 @@ namespace QHI7OE_HFT_2022232.WpfClient.ViewModels
             }
         }
 
+        private Manga newManga;
+
+        public Manga NewManga
+        {
+            get { return newManga; }
+            set
+            {
+                if (value != null)
+                {
+                    newManga = new Manga()
+                    {
+                        MangaId = value.MangaId,
+                        Title = value.Title,
+                        Author = value.Author,
+                        Genre = value.Genre,
+                        Price = value.Price,
+                        Release = value.Release,
+                        Rating = value.Rating
+                    };
+                }
+                OnPropertyChanged();
+                (DeleteMangaCommand as RelayCommand).NotifyCanExecuteChanged();
+            }
+        }
+
         private Author selectedAuthor;
 
         public Author SelectedAuthor
@@ -133,7 +158,8 @@ namespace QHI7OE_HFT_2022232.WpfClient.ViewModels
                 {
                     Mangas.Add(new Manga()
                     {
-                        Title = SelectedManga.Title,
+                        Title = newManga.Title
+
                     });
                 });
 

@@ -28,7 +28,7 @@
         </ListBox>
         <StackPanel Grid.Column="1">
             <Label Content="Title" Background="LightBlue" Padding="10" />
-            <TextBox Text="{Binding SelectedManga.Title}" Padding="10" Margin="0,0,0,30" />
+            <TextBox Text="{Binding NewManga.Title}" Padding="10" Margin="0,0,0,30" />
             <Button Content="Create Manga" Command="{Binding CreateMangaCommand}" Margin="10" Padding="10" />
             <Button Content="Delete Manga" Command="{Binding DeleteMangaCommand}" Margin="10" Padding="10" />
             <Button Content="Update Manga" Command="{Binding UpdateMangaCommand}" Margin="10" Padding="10" />

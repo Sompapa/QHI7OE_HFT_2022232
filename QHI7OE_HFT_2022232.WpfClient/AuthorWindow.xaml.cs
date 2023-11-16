@@ -1,4 +1,6 @@
-﻿using System;
+﻿using QHI7OE_HFT_2022232.Models;
+using QHI7OE_HFT_2022232.WpfClient.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +21,24 @@ namespace QHI7OE_HFT_2022232.WpfClient
     /// </summary>
     public partial class AuthorWindow : Window
     {
-        public AuthorWindow()
+        public AuthorWindow(Author author)
         {
             InitializeComponent();
+            var vm = new AuthorWindowViewModel();
+            vm.SetUp(author);
+            this.DataContext = vm;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (var item in stack.Children)
+            {
+                if (item is TextBox t)
+                {
+                    t.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+                }
+            }
+            this.DialogResult = true;
         }
     }
 }
