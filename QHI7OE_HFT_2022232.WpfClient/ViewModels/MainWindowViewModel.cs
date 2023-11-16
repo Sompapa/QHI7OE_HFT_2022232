@@ -14,6 +14,38 @@ namespace QHI7OE_HFT_2022232.WpfClient.ViewModels
 {
     public class MainWindowViewModel : ObservableRecipient
     {
+       public ICommand OpenMangaWindow { get; set; }
+       public ICommand OpenAuthorWindow { get; set; }
+       public ICommand OpenGenreWindow { get; set; }
 
+        public static bool IsInDesingnMode
+        {
+            get
+            {
+                var prop = DesignerProperties.IsInDesignModeProperty;
+                return (bool)DependencyPropertyDescriptor.FromProperty(prop, typeof(FrameworkElement)).Metadata.DefaultValue;
+            }
+        }
+
+        public MainWindowViewModel()
+        {
+            if (!IsInDesingnMode)
+            {
+                OpenMangaWindow = new RelayCommand(() =>
+                {
+                   new MangaWindow().ShowDialog();
+                });
+
+                OpenAuthorWindow = new RelayCommand(() =>
+                {
+                    new AuthorWindow().ShowDialog();
+                });
+
+                OpenGenreWindow = new RelayCommand(() =>
+                {
+                    new GenreWindow().ShowDialog();
+                });
+            }
+        }
     }
 }
