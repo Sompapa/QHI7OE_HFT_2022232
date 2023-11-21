@@ -43,6 +43,7 @@
             <Button Content="Create Manga" Command="{Binding CreateMangaCommand}" Padding="10" Margin="10"/>
             <Button Content="Delete Manga" Command="{Binding DeleteMangaCommand}" Padding="10" Margin="10"/>
             <Button Content="Update Manga" Command="{Binding UpdateMangaCommand}" Padding="10" Margin="10"/>
+            <Button Content="Mangas" Command="{Binding OpenMangaWindow}"/>
         </StackPanel>
         
         <ListBox ItemsSource="{Binding Authors}" SelectedItem="{Binding SelectedAuthor}" Grid.Column="2">

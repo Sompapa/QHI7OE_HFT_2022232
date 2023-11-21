@@ -48,6 +48,7 @@ namespace QHI7OE_HFT_2022232.WpfClient
         public ICommand CreateMangaCommand { get; set; }
         public ICommand DeleteMangaCommand { get; set; }
         public ICommand UpdateMangaCommand { get; set; }
+        public ICommand OpenMangaWindow { get; set; }
 
         //Author:
         public RestCollection<Author> Authors { get; set; }
@@ -122,6 +123,7 @@ namespace QHI7OE_HFT_2022232.WpfClient
             Mangas = new RestCollection<Manga>("http://localhost:59073/", "manga");
             Authors = new RestCollection<Author>("http://localhost:59073/", "author");
             Genres = new RestCollection<Genre>("http://localhost:59073/", "genre");
+            
 
             //Manga Commands:
             //Create:
@@ -136,6 +138,7 @@ namespace QHI7OE_HFT_2022232.WpfClient
                     Release = SelectedManga.Release,
                     Price = SelectedManga.Price
                 });
+
             });
 
             //Delete:
@@ -160,6 +163,11 @@ namespace QHI7OE_HFT_2022232.WpfClient
 
                     throw;
                 }
+            });
+
+            OpenMangaWindow = new RelayCommand(() =>
+            {
+                new MangaWindow().ShowDialog();
             });
 
             SelectedManga = new Manga();

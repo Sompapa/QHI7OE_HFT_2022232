@@ -1,0 +1,42 @@
+﻿<Window x:Class="QHI7OE_HFT_2022232.WpfClient.MangaWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QHI7OE_HFT_2022232.WpfClient"
+        mc:Ignorable="d"
+        Title="MangaWindow" Height="850" Width="800">
+    <Window.DataContext>
+        <local:MangaWindowViewModel/>
+    </Window.DataContext>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <ListBox ItemsSource="{Binding Mangas}" SelectedItem="{Binding SelectedManga}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Label Content="{Binding Title}"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <StackPanel Grid.Column="1">
+            <Label Content="Title" Background="LightBlue" Padding="10"/>
+            <TextBox Text="{Binding SelectedManga.Title}" Padding="10"/>
+            <Label Content="Genre ID" Background="LightBlue" Padding="10"/>
+            <TextBox Text="{Binding SelectedManga.Genre.GenreId}" Padding="10"/>
+            <Label Content="Author ID" Background="LightBlue" Padding="10"/>
+            <TextBox Text="{Binding SelectedManga.Author.AuthorId}" Padding="10"/>
+            <Label Content="Price" Background="LightBlue" Padding="10"/>
+            <TextBox Text="{Binding SelectedManga.Price}" Padding="10"/>
+            <Label Content="Rating" Background="LightBlue" Padding="10"/>
+            <TextBox Text="{Binding SelectedManga.Rating}" Padding="10"/>
+            <Label Content="Release" Background="LightBlue" Padding="10"/>
+            <TextBox Text="{Binding SelectedManga.Release}" Padding="10"/>
+            <Button Content="Create Manga" Command="{Binding CreateMangaCommand}" Padding="10" Margin="10"/>
+            <Button Content="Delete Manga" Command="{Binding DeleteMangaCommand}" Padding="10" Margin="10"/>
+            <Button Content="Update Manga" Command="{Binding UpdateMangaCommand}" Padding="10" Margin="10"/>
+        </StackPanel>
+    </Grid>
+</Window>
