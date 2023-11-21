@@ -54,7 +54,7 @@ namespace QHI7OE_HFT_2022232.WpfClient
         {
 
             //Create
-            Authors = new RestCollection<Author>("http://localhost:59073/", "author");
+            Authors = new RestCollection<Author>("http://localhost:59073/", "author", "hub");
 
             CreateAuthorCommand = new RelayCommand(() =>
             {

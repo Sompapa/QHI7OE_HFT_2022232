@@ -58,7 +58,7 @@ namespace QHI7OE_HFT_2022232.WpfClient
 
         public MangaWindowViewModel()
         {
-            Mangas = new RestCollection<Manga>("http://localhost:59073/", "manga");
+            Mangas = new RestCollection<Manga>("http://localhost:59073/", "manga", "hub");
 
             //Create:
             CreateMangaCommand = new RelayCommand(() =>

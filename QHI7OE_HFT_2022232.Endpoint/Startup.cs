@@ -57,6 +57,12 @@ namespace QHI7OE_HFT_2022232.Endpoint
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "QHI7OE_HFT_2022232.Endpoint v1"));
             }
 
+            app.UseCors(x => x
+            .AllowCredentials()
+            .AllowAnyMethod()
+            .AllowAnyHeader()
+            .WithOrigins("http://localhost:5000"));
+
             app.UseRouting();
 
             app.UseAuthorization();

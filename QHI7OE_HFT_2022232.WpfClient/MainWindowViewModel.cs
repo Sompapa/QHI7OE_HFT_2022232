@@ -15,7 +15,6 @@ namespace QHI7OE_HFT_2022232.WpfClient
 {
     public  class MainWindowViewModel : ObservableRecipient
     {
- 
         public ICommand OpenMangaWindow { get; set; }
         public ICommand OpenAuthorWindow { get; set; }
         public ICommand OpenGenreWindow { get; set; }

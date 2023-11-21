@@ -52,7 +52,7 @@ namespace QHI7OE_HFT_2022232.WpfClient
         public GenreWindowViewModel()
         {
 
-            Genres = new RestCollection<Genre>("http://localhost:59073/", "genre");
+            Genres = new RestCollection<Genre>("http://localhost:59073/", "genre", "hub");
 
             //Genre Commands:
             //Create:
