@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QHI7OE_HFT_2022232.WpfClient"
         mc:Ignorable="d"
-        Title="MangaWindow" Height="850" Width="800">
+        Title="MangasEditorMenu" Height="850" Width="800">
     <Window.DataContext>
         <local:MangaWindowViewModel/>
     </Window.DataContext>

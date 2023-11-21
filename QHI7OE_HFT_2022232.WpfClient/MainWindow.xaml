@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QHI7OE_HFT_2022232.WpfClient"
         mc:Ignorable="d"
-        Title="MainWindow" Height="850" Width="1500">
+        Title="MainMenu" Height="450" Width="600">
     <Window.DataContext>
         <local:MainWindowViewModel/>
     </Window.DataContext>
@@ -13,67 +13,11 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
-        <ListBox ItemsSource="{Binding Mangas}" SelectedItem="{Binding SelectedManga}">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <Label Content="{Binding Title}"/>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
         <StackPanel Grid.Column="1">
-            <Label Content="Title" Background="LightBlue" Padding="10"/>
-            <TextBox Text="{Binding SelectedManga.Title}" Padding="10"/>
-            <Label Content="Genre ID" Background="LightBlue" Padding="10"/>
-            <TextBox Text="{Binding SelectedManga.Genre.GenreId}" Padding="10"/>
-            <Label Content="Author ID" Background="LightBlue" Padding="10"/>
-            <TextBox Text="{Binding SelectedManga.Author.AuthorId}" Padding="10"/>
-            <Label Content="Price" Background="LightBlue" Padding="10"/>
-            <TextBox Text="{Binding SelectedManga.Price}" Padding="10"/>
-            <Label Content="Rating" Background="LightBlue" Padding="10"/>
-            <TextBox Text="{Binding SelectedManga.Rating}" Padding="10"/>
-            <Label Content="Release" Background="LightBlue" Padding="10"/>
-            <TextBox Text="{Binding SelectedManga.Release}" Padding="10"/>
-            <Button Content="Create Manga" Command="{Binding CreateMangaCommand}" Padding="10" Margin="10"/>
-            <Button Content="Delete Manga" Command="{Binding DeleteMangaCommand}" Padding="10" Margin="10"/>
-            <Button Content="Update Manga" Command="{Binding UpdateMangaCommand}" Padding="10" Margin="10"/>
-            <Button Content="Mangas" Command="{Binding OpenMangaWindow}"/>
-        </StackPanel>
-        
-        <ListBox ItemsSource="{Binding Authors}" SelectedItem="{Binding SelectedAuthor}" Grid.Column="2">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <Label Content="{Binding AuthorName}"/>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-        <StackPanel Grid.Column="3">
-            <Label Content="Author Name" Background="LightBlue" Padding="10"/>
-            <TextBox Text="{Binding SelectedAuthor.AuthorName}" Padding="10"/>
-            <Button Content="Create Author" Command="{Binding CreateAuthorCommand}" Padding="10" Margin="10"/>
-            <Button Content="Delete Author" Command="{Binding DeleteAuthorCommand}" Padding="10" Margin="10"/>
-            <Button Content="Update Author" Command="{Binding UpdateAuthorCommand}" Padding="10" Margin="10"/>
-        </StackPanel>
-
-        <ListBox ItemsSource="{Binding Genres}" SelectedItem="{Binding SelectedGenre}" Grid.Column="4">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <Label Content="{Binding GenreName}"/>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-        <StackPanel Grid.Column="5">
-            <Label Content="Genre Name" Background="LightBlue" Padding="10"/>
-            <TextBox Text="{Binding SelectedGenre.GenreName}" Padding="10"/>
-            <Button Content="Create Genre" Command="{Binding CreateGenreCommand}" Padding="10" Margin="10"/>
-            <Button Content="Delete Genre" Command="{Binding DeleteGenreCommand}" Padding="10" Margin="10"/>
-            <Button Content="Update Genre" Command="{Binding UpdateGenreCommand}" Padding="10" Margin="10"/>
+            <Button Content="Mangas" Command="{Binding OpenMangaWindow}" Padding="10" Margin="10"/>
+            <Button Content="Authors" Command="{Binding OpenAuthorWindow}" Padding="10" Margin="10"/>
+            <Button Content="Genres" Command="{Binding OpenGenreWindow}" Padding="10" Margin="10"/>
         </StackPanel>
     </Grid>
 </Window>
