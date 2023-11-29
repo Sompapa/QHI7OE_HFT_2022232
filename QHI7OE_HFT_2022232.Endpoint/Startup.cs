@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -57,11 +59,20 @@ namespace QHI7OE_HFT_2022232.Endpoint
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "QHI7OE_HFT_2022232.Endpoint v1"));
             }
 
+            app.UseExceptionHandler(c => c.Run(async context =>
+            {
+                var exception = context.Features
+                    .Get<IExceptionHandlerFeature>()
+                    .Error;
+                var response = new {Msg = exception.Message};
+                await context.Response.WriteAsJsonAsync(response);
+            }));
+
             app.UseCors(x => x
             .AllowCredentials()
             .AllowAnyMethod()
             .AllowAnyHeader()
-            .WithOrigins("http://localhost:5000"));
+            .WithOrigins("http://localhost:28642"));
 
             app.UseRouting();
 

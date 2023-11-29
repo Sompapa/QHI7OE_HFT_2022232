@@ -16,6 +16,8 @@ namespace QHI7OE_HFT_2022232.WpfClient
     {
         public RestCollection<Manga> Mangas { get; set; }
 
+        public RestCollection<object> NonCruds { get; set; }
+
         private Manga selectedManga;
 
         public Manga SelectedManga
@@ -29,8 +31,8 @@ namespace QHI7OE_HFT_2022232.WpfClient
                     {
                         Title = value.Title,
                         MangaId = value.MangaId,
-                        Genre = value.Genre,
-                        Author = value.Author,
+                        GenreId = value.GenreId,
+                        AuthorId = value.AuthorId,
                         Rating = value.Rating,
                         Release = value.Release,
                         Price = value.Price
@@ -100,6 +102,7 @@ namespace QHI7OE_HFT_2022232.WpfClient
             });
 
             SelectedManga = new Manga();
+
         }
     }
 }

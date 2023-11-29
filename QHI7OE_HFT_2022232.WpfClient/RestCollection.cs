@@ -50,7 +50,8 @@ namespace QHI7OE_HFT_2022232.WpfClient
                 new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue
                 ("application/json"));
             try
-            {
+
+                            {
                 client.GetAsync("").GetAwaiter().GetResult();
             }
             catch (HttpRequestException)
@@ -408,9 +409,6 @@ namespace QHI7OE_HFT_2022232.WpfClient
                     });
                 });
             }
-
         }
-
-
     }
 }
