@@ -77,7 +77,7 @@ function update() {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json', },
         body: JSON.stringify(
-            { title: name, cost: price, mangaId: mangaIdToUpdate })
+            { title: name, price: cost, mangaId: mangaIdToUpdate })
     })
         .then(response => response)
         .then(data => {
@@ -108,7 +108,7 @@ function create() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', },
         body: JSON.stringify(
-            { title: name, cost: price })})
+            { title: name, price: cost })})
         .then(response => response)
         .then(data =>
         {
