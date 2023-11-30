@@ -11,8 +11,19 @@
     <div id="formdiv">
         <label> Title </label>
         <input type="text" id="title" />
+        <label> Price </label>
+        <input type="text" id="price" />
         <button type="button" onclick="create()"> Add manga </button>
     </div>
+
+    <div id="updateformdiv">
+        <label> Title </label>
+        <input type="text" id="titleupdate" />
+        <label> Price </label>
+        <input type="text" id="priceupdate" />
+        <button type="button" onclick="update()"> Update manga </button>
+    </div>
+
     <table>
         <thead>
             <tr>
@@ -21,6 +32,7 @@
                 <th>Price</th>
                 <th>Rating</th>
                 <th>Realese</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody id="resultarea">
@@ -29,6 +41,7 @@
         </tbody>
     </table>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
