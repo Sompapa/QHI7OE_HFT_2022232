@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.SignalR.Client;
+using Newtonsoft.Json;
 using System;
+using System.CodeDom;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -15,7 +17,7 @@ namespace QHI7OE_HFT_2022232.WpfClient
 {
     public class RestService
     {
-        HttpClient client;
+       public HttpClient client;
 
         public RestService(string baseurl, string pingableEndpoint = "swagger")
         {
@@ -323,9 +325,43 @@ namespace QHI7OE_HFT_2022232.WpfClient
             Init();
         }
 
+        public RestCollection<KeyValuePair<string, double>> GetNonCrudData(string endpoint)
+        {
+            try
+            {
+                HttpResponseMessage response = rest.client.GetAsync(endpoint)
+                    .GetAwaiter()
+                    .GetResult();
+                if (response.IsSuccessStatusCode)
+                {
+                    HttpContent content= response.Content;
+                    Task<string> result = content.ReadAsStringAsync();
+                    string contentString = result.GetAwaiter().GetResult();
+
+                    List<KeyValuePair<string, double>> items = JsonConvert
+                        .DeserializeObject<List<KeyValuePair<string, double>>>(contentString);
+
+                    return new RestCollection<KeyValuePair<string, double>>
+                        ("http://localhost:59073/", "Stat/AVGPriceByAuthor", "hub")
+                    { items = items };
+                }
+                else
+                {
+                    throw new HttpRequestException($"HTTP Error: {response.StatusCode}");
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return new RestCollection<KeyValuePair<string, double>>
+                    ("http://localhost:59073/", "Stat/AVGPriceByAuthor", "hub"); 
+            }
+        }
+
         private async Task Init()
         {
-            items = await rest.GetAsync<T>(typeof(T).Name);
+            items = await rest.GetAsync<T>(typeof(T).Name );
             CollectionChanged?.Invoke(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
         }
 

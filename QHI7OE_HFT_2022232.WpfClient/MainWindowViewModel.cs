@@ -15,6 +15,17 @@ namespace QHI7OE_HFT_2022232.WpfClient
 {
     public  class MainWindowViewModel : ObservableRecipient
     {
+        public RestCollection<KeyValuePair<string, double>> NonCruds { get; set; }
+
+        private RestCollection<KeyValuePair<string, double>> avgPriceByAuthor;
+        public RestCollection<KeyValuePair<string, double>> AVGPriceByAuthor 
+        { 
+            get { return avgPriceByAuthor; }
+            set { }
+
+        }
+
+        public ICommand AVGPrice_Author { get; set; }
         public ICommand OpenMangaWindow { get; set; }
         public ICommand OpenAuthorWindow { get; set; }
         public ICommand OpenGenreWindow { get; set; }
@@ -44,6 +55,11 @@ namespace QHI7OE_HFT_2022232.WpfClient
             OpenGenreWindow = new RelayCommand(() =>
             {
                 new GenreWindow().ShowDialog();
+            });
+
+            AVGPrice_Author = new RelayCommand(async() =>
+            {
+                AVGPriceByAuthor = NonCruds.GetNonCrudData("http://localhost:59073/Stat/AVGPriceByAuthor");
             });
 
         }

@@ -16,8 +16,6 @@ namespace QHI7OE_HFT_2022232.WpfClient
     {
         public RestCollection<Manga> Mangas { get; set; }
 
-        public RestCollection<object> NonCruds { get; set; }
-
         private Manga selectedManga;
 
         public Manga SelectedManga
@@ -42,7 +40,6 @@ namespace QHI7OE_HFT_2022232.WpfClient
                 }
 
             }
-
         }
 
         public ICommand CreateMangaCommand { get; set; }
