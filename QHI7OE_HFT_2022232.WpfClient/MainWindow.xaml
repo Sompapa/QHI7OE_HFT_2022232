@@ -14,13 +14,16 @@
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
-        <ListBox ItemsSource="{Binding NonCruds}">
+        <ListBox ItemsSource="{Binding StDbNonCruds}">
         </ListBox>
         <StackPanel Grid.Column="1">
             <Button Content="Mangas" Command="{Binding OpenMangaWindow}" Padding="10" Margin="10"/>
             <Button Content="Authors" Command="{Binding OpenAuthorWindow}" Padding="10" Margin="10"/>
             <Button Content="Genres" Command="{Binding OpenGenreWindow}" Padding="10" Margin="10"/>
-            <Button Content="AVG Price By Author" Command="{Binding AVGPrice_Author}" Padding="10" Margin="10"/>
+            <Button Content="AVG Price By Author" Command="{Binding AVGPriceByAuthor}" Padding="10" Margin="10"/>
+            <Button Content="AVG Price By Genre" Command="{Binding AVGPriceByGenre}" Padding="10" Margin="10"/>
+            <Button Content="All Price By Genre" Command="{Binding AllPriceByGenre}" Padding="10" Margin="10"/>
+            <Button Content="All price By Year" Command="{Binding AllpriceByYears}" Padding="10" Margin="10"/>
         </StackPanel>
     </Grid>
 </Window>

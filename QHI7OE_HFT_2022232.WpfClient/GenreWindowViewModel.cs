@@ -61,13 +61,13 @@ namespace QHI7OE_HFT_2022232.WpfClient
                 Genres.Add(new Genre()
                 {
                     GenreName = SelectedGenre.GenreName
-                });
+                }, "http://localhost:59073/genre");
             });
 
             //Delete:
             DeleteGenreCommand = new RelayCommand(() =>
             {
-                Genres.Delete(SelectedGenre.GenreId);
+                Genres.Delete(SelectedGenre.GenreId, "http://localhost:59073/genre");
             },
             () =>
             {
@@ -79,7 +79,7 @@ namespace QHI7OE_HFT_2022232.WpfClient
             {
                 try
                 {
-                    Genres.Update(SelectedGenre);
+                    Genres.Update(SelectedGenre, "http://localhost:59073/genre");
                 }
                 catch (Exception)
                 {

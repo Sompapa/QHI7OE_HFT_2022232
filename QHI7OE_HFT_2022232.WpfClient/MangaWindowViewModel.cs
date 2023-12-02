@@ -37,6 +37,7 @@ namespace QHI7OE_HFT_2022232.WpfClient
                     };
                     OnPropertyChanged();
                     (DeleteMangaCommand as RelayCommand).NotifyCanExecuteChanged();
+                    (UpdateMangaCommand as RelayCommand).NotifyCanExecuteChanged();
                 }
 
             }
@@ -45,6 +46,8 @@ namespace QHI7OE_HFT_2022232.WpfClient
         public ICommand CreateMangaCommand { get; set; }
         public ICommand DeleteMangaCommand { get; set; }
         public ICommand UpdateMangaCommand { get; set; }
+
+        public ICommand NonCrud { get; set; }
 
         public static bool IsInDesignMode
         {
@@ -57,7 +60,6 @@ namespace QHI7OE_HFT_2022232.WpfClient
 
         public MangaWindowViewModel()
         {
-            //NonCruds = new RestCollection<object>("http://localhost:59073/", "stat", "hub");
             Mangas = new RestCollection<Manga>("http://localhost:59073/", "manga", "hub");
 
             //Create:
@@ -66,19 +68,19 @@ namespace QHI7OE_HFT_2022232.WpfClient
                 Mangas.Add(new Manga()
                 {
                     Title = SelectedManga.Title,
-                    Genre = SelectedManga.Genre,
-                    Author = SelectedManga.Author,
+                    GenreId = SelectedManga.GenreId,
+                    AuthorId = SelectedManga.AuthorId,
                     Rating = SelectedManga.Rating,
                     Release = SelectedManga.Release,
                     Price = SelectedManga.Price
-                });
+                }, "http://localhost:59073/manga");
 
             });
 
             //Delete:
             DeleteMangaCommand = new RelayCommand(() =>
             {
-                Mangas.Delete(SelectedManga.MangaId);
+                Mangas.Delete(SelectedManga.MangaId, "http://localhost:59073/manga");
             },
             () =>
             {
@@ -90,7 +92,7 @@ namespace QHI7OE_HFT_2022232.WpfClient
             {
                 try
                 {
-                    Mangas.Update(SelectedManga);
+                    Mangas.Update(SelectedManga, "http://localhost:59073/manga");
                 }
                 catch (Exception)
                 {
@@ -98,7 +100,6 @@ namespace QHI7OE_HFT_2022232.WpfClient
                     throw;
                 }
             });
-
             SelectedManga = new Manga();
 
         }

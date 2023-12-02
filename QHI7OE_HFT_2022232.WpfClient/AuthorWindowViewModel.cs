@@ -61,13 +61,13 @@ namespace QHI7OE_HFT_2022232.WpfClient
                 Authors.Add(new Author()
                 {
                     AuthorName = selectedAuthor.AuthorName
-                });
+                }, "http://localhost:59073/author");
             });
 
             //Delete:
             DeleteAuthorCommand = new RelayCommand(() =>
             {
-                Authors.Delete(selectedAuthor.AuthorId);
+                Authors.Delete(selectedAuthor.AuthorId, "http://localhost:59073/author");
             },
             () =>
             {
@@ -79,7 +79,7 @@ namespace QHI7OE_HFT_2022232.WpfClient
             {
                 try
                 {
-                    Authors.Update(selectedAuthor);
+                    Authors.Update(selectedAuthor, "http://localhost:59073/author");
                 }
                 catch (Exception)
                 {

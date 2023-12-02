@@ -311,57 +311,24 @@ namespace QHI7OE_HFT_2022232.WpfClient
                     }
                     else
                     {
-                        Init();
+                        Init(endpoint);
                     }
 
                 });
                 this.notify.AddHandler<T>(type.Name + "Updated", (T item) =>
                 {
-                    Init();
+                    Init(endpoint);
                 });
 
                 this.notify.Init();
             }
-            Init();
+            Init(endpoint);
         }
 
-        public RestCollection<KeyValuePair<string, double>> GetNonCrudData(string endpoint)
+
+        private async Task Init(string endpoint)
         {
-            try
-            {
-                HttpResponseMessage response = rest.client.GetAsync(endpoint)
-                    .GetAwaiter()
-                    .GetResult();
-                if (response.IsSuccessStatusCode)
-                {
-                    HttpContent content= response.Content;
-                    Task<string> result = content.ReadAsStringAsync();
-                    string contentString = result.GetAwaiter().GetResult();
-
-                    List<KeyValuePair<string, double>> items = JsonConvert
-                        .DeserializeObject<List<KeyValuePair<string, double>>>(contentString);
-
-                    return new RestCollection<KeyValuePair<string, double>>
-                        ("http://localhost:59073/", "Stat/AVGPriceByAuthor", "hub")
-                    { items = items };
-                }
-                else
-                {
-                    throw new HttpRequestException($"HTTP Error: {response.StatusCode}");
-                }
-            }
-            catch (Exception ex)
-            {
-
-                MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                return new RestCollection<KeyValuePair<string, double>>
-                    ("http://localhost:59073/", "Stat/AVGPriceByAuthor", "hub"); 
-            }
-        }
-
-        private async Task Init()
-        {
-            items = await rest.GetAsync<T>(typeof(T).Name );
+            items = await rest.GetAsync<T>( endpoint );
             CollectionChanged?.Invoke(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
         }
 
@@ -383,17 +350,17 @@ namespace QHI7OE_HFT_2022232.WpfClient
             else return new List<T>().GetEnumerator();
         }
 
-        public void Add(T item)
+        public void Add(T item, string endpoint)
         {
             if (hasSignalR)
             {
-                this.rest.PostAsync(item, typeof(T).Name);
+                this.rest.PostAsync(item, endpoint);
             }
             else
             {
-                this.rest.PostAsync(item, typeof(T).Name).ContinueWith((t) =>
+                this.rest.PostAsync(item, endpoint).ContinueWith((t) =>
                 {
-                    Init().ContinueWith(z =>
+                    Init(endpoint).ContinueWith(z =>
                     {
                         Application.Current.Dispatcher.Invoke(() =>
                         {
@@ -405,17 +372,17 @@ namespace QHI7OE_HFT_2022232.WpfClient
 
         }
 
-        public void Update(T item)
+        public void Update(T item, string endpoint)
         {
             if (hasSignalR)
             {
-                this.rest.PutAsync(item, typeof(T).Name);
+                this.rest.PutAsync(item, endpoint);
             }
             else
             {
-                this.rest.PutAsync(item, typeof(T).Name).ContinueWith((t) =>
+                this.rest.PutAsync(item, endpoint).ContinueWith((t) =>
                 {
-                    Init().ContinueWith(z =>
+                    Init(endpoint).ContinueWith(z =>
                     {
                         Application.Current.Dispatcher.Invoke(() =>
                         {
@@ -426,17 +393,17 @@ namespace QHI7OE_HFT_2022232.WpfClient
             }
         }
 
-        public void Delete(int id)
+        public void Delete(int id, string endpoint)
         {
             if (hasSignalR)
             {
-                this.rest.DeleteAsync(id, typeof(T).Name);
+                this.rest.DeleteAsync(id, endpoint);
             }
             else
             {
-                this.rest.DeleteAsync(id, typeof(T).Name).ContinueWith((t) =>
+                this.rest.DeleteAsync(id, endpoint).ContinueWith((t) =>
                 {
-                    Init().ContinueWith(z =>
+                    Init(endpoint).ContinueWith(z =>
                     {
                         Application.Current.Dispatcher.Invoke(() =>
                         {

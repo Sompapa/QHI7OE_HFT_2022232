@@ -1,8 +1,82 @@
-﻿let mangas = [];
+﻿const urlapi = {
+    manga: "manga",
+    author: "author",
+    genre: "genre",
+    getAvgPriceByAuthor: "stat/avgpricebyauthor",
+    getAvgPriceByGenre: "stat/avgpricebygenre",
+    getAllPriceByGenre: "stat/allpricebygenre",
+    getAllPriceByYears: "stat/allpricebyyears",
+    getAVGRateByGenre: "stat/avgratebygenre"
+}
+
+const valueDisplayer = {
+    flex: 'flex',
+    none: 'none',
+    block: 'block'
+}
+const defaHeader = { 'Content-Type': 'application/json', }
+
+const crudTypes = {
+    get: "GET",
+    post: "POST",
+    put: "PUT",
+    delete: "DELETE"
+}
+
+const IdTab = {
+    mangas: "mangas",
+    authors: "authors",
+    genres: "genres",
+    extdata: "extdata"
+}
+
+const queryTab = 'currentTab';
+
+const ELEMENT_CLASSES = {
+    active: "active",
+    hidden: 'hidden'
+}
+
+const ID_POSFIX = {
+    table: "Table",
+    add: 'AddForm',
+    edit: 'EditForm',
+}
+
+let mangas = [];
+let authors = [];
+let genres = [];
 let connection = null;
-let mangaIdToUpdate = -1;
-getdata();
+
+
 setupSignalR();
+
+let mangaIdToUpdate = -1;
+
+window.addEventListener('load', () => {
+    const currentTab = readCurrentTabFromQueryParams();
+
+    if (currentTab) {
+
+
+    }
+})
+
+function openTab(evt, tabId) {
+
+    let tabcontent, tablinks;
+    tabcontent = document.getElementByClassName("tabcontent");
+    for (var i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = valueDisplayer.none;
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (var i = 0; i < tablinks.length; i++) {
+        remveCl
+    }
+}
+
+getdata();
+
 
 function setupSignalR() {
     connection = new signalR.HubConnectionBuilder()
@@ -22,6 +96,7 @@ function setupSignalR() {
         getdata();
     });
 
+
     connection.onclose(async () => {
         await start();
     });
@@ -37,6 +112,7 @@ async function getdata() {
             display();
         });
 }
+
 
 async function start() {
     try {
@@ -61,6 +137,7 @@ function display() {
             "</td ></tr>";
     });
 }
+
 
 function showupdate(id) {
     document.getElementById('titleupdate').value = mangas.find(t => t['mangaId'] == id)['title'];
@@ -117,4 +194,88 @@ function create() {
         })
         .catch((error) => { console.error('Error:', error); });
     
+}
+
+function edit(value) {
+    const tableElement = document.getElementById(`${value}${ID_POSFIX.table}`);
+    const editElement = document.getElementById(`${value}${ID_POSFIX.edit}`);
+
+    addClass(tableElement, ELEMENT_CLASSES.hidden);
+    removeClass(editFormElement, ELEMENT_CLASSES.hidden);
+}
+
+function closeAllPanelsAndShowTable(value) {
+    const tableElement = document.getElementById(`${value}${ID_POSFIX.table}`);
+    const addFormElement = document.getElementById(`${value}${ID_POSFIX.add}`);
+    const editFormElement = document.getElementById(`${value}${ID_POSFIX.edit}`);
+
+    addClass(addFormElement, ELEMENT_CLASSES.hidden);
+    addClass(editFormElement, ELEMENT_CLASSES.hidden);
+    removeClass(tableElement, ELEMENT_CLASSES.hidden);
+}
+
+function readCurrentTabFromQueryParams() {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(queryTab);
+}
+
+function setQueryParams(key, value) {
+    const searchParams = new URLSearchParams(window.location.search);
+    searchParams.set(key, value);
+    const newRelativePathQuery = window.location.pathname + "?" + searchParams.toString();
+    history.pushState(null, "", newRelativePathQuery);
+}
+
+function resetInnerHtmlById(id) {
+    document.getElementById(id).innerHTML = "";
+}
+
+function steElementVisibilityById(id, value) {
+    document.getElementById(id).style.display = value;
+}
+
+function getElementValueById(id, value) {
+    document.getElementById(id).value = value;
+}
+
+function addClass(element, className) {
+    if (!element.classList.contains(className)) {
+        element.classList.add(className);
+    }
+}
+
+function removeClass(element, className) {
+    if (!element.classList.contains(className)) {
+        element.classList.remove(className);
+    }
+}
+
+async function CrudGet(url) {
+    return await fetch(`http://localhost:59073/${url}`, {
+        method: crudTypes.get,
+        headers: defaHeader
+    })
+}
+
+async function CrudPost(url, request) {
+    fetch(`http://localhost:59073/${url}`, {
+        method: crudTypes.post,
+        headers: defaHeader,
+        body: JSON.stringify(request)
+    })
+}
+
+async function CrudPut(url, request) {
+    fetch(`http://localhost:59073/${url}`, {
+        method: crudTypes.put,
+        headers: defaHeader
+        body: JSON.stringify(request)
+    })
+}
+
+async function CrudDelete(url, id) {
+    return await fetch(`http://localhost:59073/${url}/${id}`, {
+        method: crudTypes.delete,
+        headers: defaHeader
+    })
 }
