@@ -18,3 +18,119 @@
     transition: 0.2s;
     font-size: 17px;
 }
+
+.tab button:hover{
+    background-color: #ddd;
+}
+
+.tab button.active{
+    background-color: #ccc;
+}
+
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+    animation: ease-in-out 1s;
+}
+
+table{
+    width: 100%;
+}
+table, th, td{
+    border: 1px solid black;
+}
+table{
+    border-collapse: collapse;
+}
+th,td{
+    padding: 5px;
+}
+#mangasEditForm{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+#mangasEditForm label, button, input {
+    margin: 10px;
+    padding: 7px;
+}
+
+#mangasEditForm label{
+    font-weight: bolder;
+}
+
+#mangasAddForm {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+    #mangasAddForm label, button, input {
+        margin: 10px;
+        padding: 7px;
+    }
+
+    #mangasAddForm label {
+        font-weight: bolder;
+    }
+#authorsEditForm{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+#authorsEditForm label, button, input{
+    margin: 10px;
+    padding: 7px;
+}
+
+#authorsEditForm label{
+    font-weight: bolder;
+}
+
+#authorsAddForm{
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+}
+
+#authorsAddForm label, button, input{
+    margin: 10px;
+    padding: 7px;
+}
+
+#authorsAddForm label{
+    font-weight: bolder;
+}
+
+#genresEditForm{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+#genresEditForm label, button, input{
+    margin: 10px;
+    padding: 7px;
+}
+#genresEditForm label {
+    font-weight: bolder;
+}
+
+#genresAddForm{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+#genresAddForm label, button, input{
+    margin: 10px;
+    padding: 7px;
+}
+
+#genresAddForm label{
+    font-weight: bolder;
+}

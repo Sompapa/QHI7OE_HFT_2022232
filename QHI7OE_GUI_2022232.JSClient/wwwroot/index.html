@@ -3,9 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <title>Manga UI</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
-    <script src="script.js"></script>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
 
@@ -61,11 +59,11 @@
             </table>
         </div>
     </div>
-    
+
     <div id="authors" class="tabcontent">
         <div id="authorsAddForm" class="hidden">
             <label>Author Name</label>
-            <input type="text" id="authorName"/>
+            <input type="text" id="authorName" />
             <button type="button" onclick="create_author()">Create</button>
             <button type="button" onclick="closeAllPanelsAndShowTable('authors')">Cancel</button>
         </div>
@@ -124,5 +122,24 @@
         </div>
     </div>
 
+    <div id="extdata" class="tabcontent">
+        <button onclick="getAllPriceByGenre()">All Price By Genre</button>
+        <p id="AllPriceByGenre"></p>
+
+        <button onclick="getAllPriceByYears()">All Price By Years</button>
+        <p id="AllPriceByYears"></p>
+
+        <button onclick="getAVGPriceByGenre()">AVG Price By Genre</button>
+        <p id="AVGPriceByGenre"></p>
+
+        <button onclick="getAVGPriceByAuthor()">AVG Price By Author</button>
+        <p id="AVGPriceByAuthor"></p>
+
+        <button onclick="getAVGRateByGenre()">AVG Rate By Genre</button>
+        <p id="AVGRateByGenre"></p>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

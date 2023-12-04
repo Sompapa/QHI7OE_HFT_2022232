@@ -221,7 +221,7 @@ function display_author() {
     authors.forEach(author => {
         document.getElementById('authorresultarea').innerHTML +=
             "<tr><td>" + author.authorId + "</td><td>"
-            + author.authorName + "/td><td>" +
+            + author.authorName + "</td><td>" +
             `<button type="button" onclick="remove_author (${author.authorId})">Delete</Button>` +
             `<button type="button" onclick="showupdate_author (${author.authorId})">Update</Buttony`
             + "</td ></tr >";
@@ -234,7 +234,7 @@ function display_genre() {
     genres.forEach(genre => {
         document.getElementById('genreresultarea').innerHTML +=
             "<tr><td>" + genre.genreId + "</td><td>"
-            + genre.genreName + "/td><td>" +
+            + genre.genreName + "</td><td>" +
         `<button type="button" onclick="remove_author (${genre.genreId})">Delete</Button>` +
         `<button type="button" onclick="showupdate_author (${genre.genreId})">Update</Button>`
             + "</td ></tr >";
@@ -337,7 +337,6 @@ function update_author() {
 
     update(API_URLS.author, request, getdata_author);
 }
-
 
 function update(url, request, successFn) {
     xhrPut(url, request)
@@ -553,7 +552,7 @@ async function xhrPost(url, request) {
 async function xhrPut(url, request) {
     fetch(`http://localhost:59073/${url}`, {
         method: XHR_TYPES.put,
-        headers: defaHeader
+        headers: defaHeader,
         body: JSON.stringify(request)
     })
 }
