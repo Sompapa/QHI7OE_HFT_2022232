@@ -27,9 +27,9 @@ namespace QHI7OE_HFT_2022232.WpfClient
             }
         }
 
-        private RestCollection<KeyValuePair<string, DateTime>> StDtnoncruds { get; set; }
+        private RestCollection<KeyValuePair<DateTime, double>> StDtnoncruds { get; set; }
 
-        public RestCollection<KeyValuePair<string, DateTime>> StDtNonCruds
+        public RestCollection<KeyValuePair<DateTime, double>> StDtNonCruds
         {
             get { return StDtnoncruds; }
             set
@@ -40,6 +40,7 @@ namespace QHI7OE_HFT_2022232.WpfClient
         }
 
         public ICommand AVGPriceByGenre { get; set; }
+        public ICommand AVGRatingByGenre { get; set; }
         public ICommand AVGPriceByAuthor { get; set; }
         public ICommand AllPriceByGenre { get; set; }
         public ICommand AllpriceByYears { get; set; }
@@ -92,7 +93,12 @@ namespace QHI7OE_HFT_2022232.WpfClient
 
             AllpriceByYears = new RelayCommand(async () =>
             {
-                StDtNonCruds = new RestCollection<KeyValuePair<string, DateTime>>("http://localhost:59073/", "stat/allpricebyyear", "hub");
+                StDtNonCruds = new RestCollection<KeyValuePair<DateTime, double >>("http://localhost:59073/", "stat/allpricebyyears", "hub");
+            });
+
+            AVGRatingByGenre = new RelayCommand(async () =>
+            {
+                StDbnoncruds = new RestCollection<KeyValuePair<string, double>>("http://localhost:59073/", "​stat/avgratebygenre", "hub");
             });
 
         }

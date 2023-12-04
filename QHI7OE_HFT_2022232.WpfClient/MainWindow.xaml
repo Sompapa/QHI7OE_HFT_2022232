@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QHI7OE_HFT_2022232.WpfClient"
         mc:Ignorable="d"
-        Title="MainMenu" Height="450" Width="600">
+        Title="MainMenu" Height="550" Width="600">
     <Window.DataContext>
         <local:MainWindowViewModel/>
     </Window.DataContext>
@@ -14,16 +14,19 @@
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
-        <ListBox ItemsSource="{Binding StDbNonCruds}">
+        <ListBox x:Name="lb_stdb" ItemsSource="{Binding StDbNonCruds}" Visibility="Collapsed">
+        </ListBox>
+        <ListBox x:Name="lb_stdt" ItemsSource="{Binding StDtNonCruds}" Visibility="Collapsed">
         </ListBox>
         <StackPanel Grid.Column="1">
             <Button Content="Mangas" Command="{Binding OpenMangaWindow}" Padding="10" Margin="10"/>
             <Button Content="Authors" Command="{Binding OpenAuthorWindow}" Padding="10" Margin="10"/>
             <Button Content="Genres" Command="{Binding OpenGenreWindow}" Padding="10" Margin="10"/>
-            <Button Content="AVG Price By Author" Command="{Binding AVGPriceByAuthor}" Padding="10" Margin="10"/>
-            <Button Content="AVG Price By Genre" Command="{Binding AVGPriceByGenre}" Padding="10" Margin="10"/>
-            <Button Content="All Price By Genre" Command="{Binding AllPriceByGenre}" Padding="10" Margin="10"/>
-            <Button Content="All price By Year" Command="{Binding AllpriceByYears}" Padding="10" Margin="10"/>
+            <Button Content="AVG Price By Author" Command="{Binding AVGPriceByAuthor}" Click="Button_Click_1" Padding="10" Margin="10"/>
+            <Button Content="AVG Price By Genre" Command="{Binding AVGPriceByGenre}" Click="Button_Click_1" Padding="10" Margin="10"/>
+            <Button Content="All Price By Genre" Command="{Binding AllPriceByGenre}" Click="Button_Click_1" Padding="10" Margin="10"/>
+            <Button Content="AVG Rating By Genre" Command="{Binding AVGRatingByGenre}" Click="Button_Click_1" Padding="10" Margin="10"/>
+            <Button Content="All price By Year" Command="{Binding AllpriceByYears}" Click="Button_Click" Padding="10" Margin="10"/>
         </StackPanel>
     </Grid>
 </Window>
