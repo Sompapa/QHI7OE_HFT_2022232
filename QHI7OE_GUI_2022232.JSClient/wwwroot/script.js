@@ -300,13 +300,14 @@ function update_genre() {
 function showupdate_manga(id) {
     edit(TAB_UIDS.mangas);
 
-    const currentmanga = mangas.find(t => t.id == id);
-    setElementValueById('titleToUpdate', currentmanga.title);
-    setElementValueById('priceToUpdate', currentmanga.price);
-    setElementValueById('rateToUpdate', currentmanga.rating);
-    setElementValueById('releaseToUpdate', currentmanga.release);
-    setElementValueById('authorId', currentmanga.authorId);
-    setElementValueById('genreId', currentmanga.genreId);
+    const manga = mangas.find(t => t.mangaId == id);
+
+    setElementValueById('titleToUpdate', manga.title);
+    setElementValueById('priceToUpdate', manga.price);
+    setElementValueById('rateToUpdate', manga.rating);
+    setElementValueById('releaseToUpdate', manga.release);
+    setElementValueById('mangaAuthorIdToUpdate', manga.authorId);
+    setElementValueById('mangaGenreIdToUpdate', manga.genreId);
 
 
     mangaIdToUpdate = id;
@@ -315,17 +316,24 @@ function showupdate_manga(id) {
 function update_manga() {
     closeAllPanelsAndShowTable(TAB_UIDS.mangas);
 
-    const request = {
-        id: mangaIdToUpdate,
-        title: getElementValueById('titleToUpdate').value,
-        price: getElementValueById('priceToUpdate').value,
-        rate: getElementValueById('rateToUpdate').value,
-        release: getElementValueById('releaseToUpdate').value,
-        authorId: getElementValueById('authorId').value,
-        genreId: getElementValueById('genreId').value
-    };
-
-    update(API_URLS.manga, request, getdata_manga);
+    let title = document.getElementById('titleToUpdate').value;
+    let price = document.getElementById('priceToUpdate').value;
+    let rating = document.getElementById('rateToUpdate').value;
+    let release = document.getElementById('releaseToUpdate').value;
+    let authorId = document.getElementById('mangaAuthorIdToUpdate').value;
+    let genreId = document.getElementById('mangaGenreIdToUpdate').value;
+    fetch('http://localhost:59073/manga', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json', },
+        body: JSON.stringify(
+            { mangaId: mangaIdToUpdate, title: title, price: price, rating: rating, release: release, authorId: authorId, genreId: genreId })
+    })
+        .then(respones => response)
+        .then(data => {
+            console.log('Success:', data);
+            getdata_manga();
+        })
+        .catch((error) => { console.error('Error:', error); });
 }
 
 function showupdate_author(id) {
