@@ -22,6 +22,8 @@
             </ListBox.ItemTemplate>
         </ListBox>
         <StackPanel Grid.Column="2">
+            <Label Content="ID" Background="LightBlue" Padding="10"/>
+            <TextBox Text="{Binding SelectedAuthor.AuthorId}" Padding="10"/>
             <Label Content="Author Name" Background="LightBlue" Padding="10"/>
             <TextBox Text="{Binding SelectedAuthor.AuthorName}" Padding="10"/>
             <Button Content="Create Author" Command="{Binding CreateAuthorCommand}" Padding="10" Margin="10"/>

@@ -22,12 +22,14 @@
             </ListBox.ItemTemplate>
         </ListBox>
         <StackPanel Grid.Column="1">
+            <Label Content="ID" Background="LightBlue" Padding="10"/>
+            <TextBox Text="{Binding SelectedManga.MangaId}" Padding="10"/>
             <Label Content="Title" Background="LightBlue" Padding="10"/>
             <TextBox Text="{Binding SelectedManga.Title}" Padding="10"/>
             <Label Content="Genre ID" Background="LightBlue" Padding="10"/>
-            <TextBox Text="{Binding SelectedManga.Genre.GenreId}" Padding="10"/>
+            <TextBox Text="{Binding SelectedManga.GenreId}" Padding="10"/>
             <Label Content="Author ID" Background="LightBlue" Padding="10"/>
-            <TextBox Text="{Binding SelectedManga.Author.AuthorId}" Padding="10"/>
+            <TextBox Text="{Binding SelectedManga.AuthorId}" Padding="10"/>
             <Label Content="Price" Background="LightBlue" Padding="10"/>
             <TextBox Text="{Binding SelectedManga.Price}" Padding="10"/>
             <Label Content="Rating" Background="LightBlue" Padding="10"/>

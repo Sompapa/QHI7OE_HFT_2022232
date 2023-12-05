@@ -22,6 +22,8 @@
             </ListBox.ItemTemplate>
         </ListBox>
         <StackPanel Grid.Column="2">
+            <Label Content="ID" Background="LightBlue" Padding="10"/>
+            <TextBox Text="{Binding SelectedGenre.GenreId}" Padding="10"/>
             <Label Content="Genre Name" Background="LightBlue" Padding="10"/>
             <TextBox Text="{Binding SelectedGenre.GenreName}" Padding="10"/>
             <Button Content="Create Genre" Command="{Binding CreateGenreCommand}" Padding="10" Margin="10"/>

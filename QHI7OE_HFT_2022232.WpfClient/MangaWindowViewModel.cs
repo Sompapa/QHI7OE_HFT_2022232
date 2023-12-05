@@ -29,8 +29,8 @@ namespace QHI7OE_HFT_2022232.WpfClient
                     {
                         Title = value.Title,
                         MangaId = value.MangaId,
-                        Genre = value.Genre,
-                        Author = value.Author,
+                        GenreId = value.GenreId,
+                        AuthorId = value.AuthorId,
                         Rating = value.Rating,
                         Release = value.Release,
                         Price = value.Price
@@ -67,9 +67,10 @@ namespace QHI7OE_HFT_2022232.WpfClient
             {
                 Mangas.Add(new Manga()
                 {
+                    MangaId = selectedManga.MangaId,
                     Title = SelectedManga.Title,
-                    Genre = SelectedManga.Genre,
-                    Author = SelectedManga.Author,
+                    GenreId = SelectedManga.GenreId,
+                    AuthorId = SelectedManga.AuthorId,
                     Rating = SelectedManga.Rating,
                     Release = SelectedManga.Release,
                     Price = SelectedManga.Price
