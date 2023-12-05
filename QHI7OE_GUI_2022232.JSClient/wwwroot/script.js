@@ -69,7 +69,7 @@ window.addEventListener('load', () => {
 function openTab(evt, tabId) {
 
     let tabcontent, tablinks;
-    tabcontent = document.getElementByClassName("tabcontent");
+    tabcontent = document.getElementsByClassName("tabcontent");
     for (var i = 0; i < tabcontent.length; i++) {
         tabcontent[i].style.display = DISPLAY_VALUES.none;
     }
@@ -168,6 +168,8 @@ async function start() {
     }
 };
 
+// GetData:
+
 async function getdata_manga() {
     xhrGet(API_URLS.manga)
         .then(response => response.json())
@@ -176,8 +178,6 @@ async function getdata_manga() {
             display_manga();
         })
 }
-
-// GetData:
 
 async function getdata_author() {
     xhrGet(API_URLS.author)
@@ -207,8 +207,10 @@ function display_manga() {
             "<tr><td>" + manga.mangaId + "</td><td>"
         + manga.title + "</td><td>"
         + manga.price + "</td><td>"
-        + manga.rate + "</td><td>"
-        + manga.release + "</td><td>" +
+        + manga.rating + "</td><td>"
+        + manga.release + "</td><td>"
+        + manga.authorId + "</td><td>"
+        +manga.genreId + "</td></tr>" +
         `<button type= "button" onclick="remove_manga(${manga.mangaId})">Delete</button>` +
         `<button type= "button" onclick="showupdate_manga(${manga.mangaId})">Update</button>`
         + "</td ></tr>";
@@ -235,8 +237,8 @@ function display_genre() {
         document.getElementById('genreresultarea').innerHTML +=
             "<tr><td>" + genre.genreId + "</td><td>"
             + genre.genreName + "</td><td>" +
-        `<button type="button" onclick="remove_author (${genre.genreId})">Delete</Button>` +
-        `<button type="button" onclick="showupdate_author (${genre.genreId})">Update</Button>`
+        `<button type="button" onclick="remove_genre (${genre.genreId})">Delete</Button>` +
+        `<button type="button" onclick="showupdate_genre (${genre.genreId})">Update</Button>`
             + "</td ></tr >";
     });
 }
@@ -265,39 +267,47 @@ function remove(url, id, successFn) {
         .catch((error) => { console.error('Error:', error); });
 }
 
+//Update
+
 function showupdate_genre(id) {
     edit(TAB_UIDS.genres);
 
     const genre = genres.find(t => t.genreId == id)
 
-    setElementValueById('genreIdToUpdate', genre.genreId);
-    setElementValueById('genreName', genre.genreName);
+    setElementValueById('genreNameToUpdate', genre.genreName);
 
     genreIdToUpdate = id;
 }
 
 function update_genre() {
-    closeAllPanelsAndShowTable(TAB_UIDS.gernes);
+    closeAllPanelsAndShowTable(TAB_UIDS.genres);
 
-    const request = {
-        genreId: genreIdToUpdate,
-        genreName: getElementValueById('genreName')
-    }
-
-    update(API_URLS.genre, request, getdata_genre);
+    let genreName = document.getElementById('genreNameToUpdate').value;
+    fetch('http://localhost:59073/genre', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json', },
+        body: JSON.stringify(
+            { genreId: genreIdToUpdate, genreName: genreName })
+    })
+        .then(respones => response)
+        .then(data => {
+            console.log('Success:', data);
+            getdata_genre();
+        })
+        .catch((error) => { console.error('Error:', error); });
 }
 
-//Update
-
 function showupdate_manga(id) {
+    edit(TAB_UIDS.mangas);
 
-    const manga = mangas.find(t => t.id == id)
+    const currentmanga = mangas.find(t => t.id == id);
+    setElementValueById('titleToUpdate', currentmanga.title);
+    setElementValueById('priceToUpdate', currentmanga.price);
+    setElementValueById('rateToUpdate', currentmanga.rating);
+    setElementValueById('releaseToUpdate', currentmanga.release);
+    setElementValueById('authorId', currentmanga.authorId);
+    setElementValueById('genreId', currentmanga.genreId);
 
-    setElementValueById('mangaIdToUpdate', manga.mangaId);
-    setElementValueById('title', manga.title);
-    setElementValueById('price', manga.price);
-    setElementValueById('rate', manga.rate);
-    setElementValueById('release', manga.release);
 
     mangaIdToUpdate = id;
 }
@@ -306,23 +316,25 @@ function update_manga() {
     closeAllPanelsAndShowTable(TAB_UIDS.mangas);
 
     const request = {
-        mangaId: document.getElementById('mangaIdToUpdate').value,
-        title: document.getElementById('title').value,
-        price: document.getElementById('price').value,
-        rate: document.getElementById('rate').value,
-        release: document.getElementById('release').value
+        id: mangaIdToUpdate,
+        title: getElementValueById('titleToUpdate').value,
+        price: getElementValueById('priceToUpdate').value,
+        rate: getElementValueById('rateToUpdate').value,
+        release: getElementValueById('releaseToUpdate').value,
+        authorId: getElementValueById('authorId').value,
+        genreId: getElementValueById('genreId').value
     };
 
     update(API_URLS.manga, request, getdata_manga);
 }
 
 function showupdate_author(id) {
+
     edit(TAB_UIDS.authors);
 
     const author = authors.find(t => t.authorId == id)
 
-    setElementValueById('authorIdToUpdate', author.authorId);
-    setElementValueById('authorName', author.authorName);
+    setElementValueById('authorNameToUpdate', author.authorName);
 
     authorIdToUpdate = id;
 }
@@ -330,19 +342,27 @@ function showupdate_author(id) {
 function update_author() {
     closeAllPanelsAndShowTable(TAB_UIDS.authors);
 
-    const request = {
-        authorId: authorIdToUpdate,
-        authorName: getElementValueById('authorName')
-    }
+    let authorName = document.getElementById('authorNameToUpdate').value;
+    fetch('http://localhost:59073/author', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json', },
+        body: JSON.stringify(
+            { authorId: authorIdToUpdate, authorName: authorName  })
+    })
+        .then(response => response)
+        .then(data => {
+            console.log('Success:', data);
+            getdata_author();
+        })
+        .catch((error) => { console.error('Error:', error); });
 
-    update(API_URLS.author, request, getdata_author);
 }
 
 function update(url, request, successFn) {
     xhrPut(url, request)
-        .then(url, request)
+        .then(response => response)
         .then(data => {
-            console.log('Succeaa:', data);
+            console.log('Success:', data);
             successFn();
         })
         .catch((error) => { console.error('Error:', error); });
@@ -353,9 +373,8 @@ function create_genre() {
     fetch('http://localhost:59073/genre', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', },
-        body: JSON.stringify({
-            genreId: genreId, genreName: genreName
-        })
+        body: JSON.stringify(
+            {genreName: genreName})
     })
         .then(response => response)
         .then(data => {
@@ -368,10 +387,10 @@ function create_genre() {
 function create_author() {
     let authorName = document.getElementById('authorName').value;
     fetch('http://localhost:59073/author', {
-        method: 'Post',
+        method: 'POST',
         headers: { 'Content-Type': 'application/json', },
         body: JSON.stringify(
-            { authorId: authorId, authorName: authorName })
+            { authorName: authorName })
     })
         .then(response => response)
         .then(data => {
@@ -382,14 +401,24 @@ function create_author() {
 }
 
 function create_manga() {
-    const request = {
-        title: getElementValueById('title'),
-        price: getElementValueById('price'),
-        rate: getElementValueById('rate'),
-        release: getElementValueById('release')
-    }
-
-    create(API_URLS.manga, request, getdata_manga)
+    let title = document.getElementById('title').value;
+    let price = document.getElementById('price').value;
+    let rate = document.getElementById('rate').value;
+    let release = document.getElementById('release').value;
+    let authorId = document.getElementById('authorId').value;
+    let genreId = document.getElementById('genreId').value;
+    fetch('http://localhost:59073/manga', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', },
+        body: JSON.stringify(
+            { title: title, price: price, rating: rate, release: release, authorId: authorId, genreId: genreId })
+    })
+        .then(response => response)
+        .then(data => {
+            console.log('Succes:', data);
+            getdata_manga();
+        })
+        .catch((error) => { console.error('Error:', error) });
 }
 
 function create(url, request, succesFn) {
@@ -412,7 +441,7 @@ function getAllPriceByGenre() {
         })
 }
 
-function displayAllPriceByGenre() {
+function displayAllPriceByGenre(data) {
     document.getElementById('AllPriceByGenre').innerHTML = JSON.stringify(data)
 }
 
@@ -470,7 +499,7 @@ function displayAVGPriceByAuthor(data) {
 
 function add(value) {
     const tableElement = document.getElementById(`${value}${ID_POSFIX.table}`);
-    const addFormElement = document.getElementById(`${value}${ID_POSFIX}`);
+    const addFormElement = document.getElementById(`${value}${ID_POSFIX.add}`);
 
     addClass(tableElement, ELEMENT_CLASSES.hidden);
     removeClass(addFormElement, ELEMENT_CLASSES.hidden);
@@ -478,7 +507,7 @@ function add(value) {
 
 function edit(value) {
     const tableElement = document.getElementById(`${value}${ID_POSFIX.table}`);
-    const editElement = document.getElementById(`${value}${ID_POSFIX.edit}`);
+    const editFormElement = document.getElementById(`${value}${ID_POSFIX.edit}`);
 
     addClass(tableElement, ELEMENT_CLASSES.hidden);
     removeClass(editFormElement, ELEMENT_CLASSES.hidden);
@@ -529,7 +558,7 @@ function addClass(element, className) {
 }
 
 function removeClass(element, className) {
-    if (!element.classList.contains(className)) {
+    if (element.classList.contains(className)) {
         element.classList.remove(className);
     }
 }

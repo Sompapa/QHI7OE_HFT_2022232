@@ -98,7 +98,7 @@ namespace QHI7OE_HFT_2022232.WpfClient
 
             AVGRatingByGenre = new RelayCommand(async () =>
             {
-                StDbnoncruds = new RestCollection<KeyValuePair<string, double>>("http://localhost:59073/", "​stat/avgratebygenre", "hub");
+                StDbNonCruds = new RestCollection<KeyValuePair<string, double>>("http://localhost:59073/", "stat/avgratebygenre", "hub");
             });
 
         }

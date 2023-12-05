@@ -60,6 +60,7 @@ namespace QHI7OE_HFT_2022232.WpfClient
             {
                 Authors.Add(new Author()
                 {
+                    AuthorId = selectedAuthor.AuthorId,
                     AuthorName = selectedAuthor.AuthorName
                 }, "http://localhost:59073/author");
             });

@@ -31,7 +31,7 @@ namespace QHI7OE_HFT_2022232.Models
         public int AuthorId { get; set; }
 
         public int GenreId { get; set; }
-        
+
         public virtual Author Author { get; set; }
 
         public virtual Genre Genre { get; set; }

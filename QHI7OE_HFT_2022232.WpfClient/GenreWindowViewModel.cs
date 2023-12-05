@@ -60,6 +60,7 @@ namespace QHI7OE_HFT_2022232.WpfClient
             {
                 Genres.Add(new Genre()
                 {
+                    GenreId = selectedGenre.GenreId,
                     GenreName = SelectedGenre.GenreName
                 }, "http://localhost:59073/genre");
             });
