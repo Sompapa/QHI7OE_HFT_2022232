@@ -26,7 +26,7 @@
             <Button Content="AVG Price By Genre" Command="{Binding AVGPriceByGenre}" Click="Button_Click_1" Padding="10" Margin="10"/>
             <Button Content="All Price By Genre" Command="{Binding AllPriceByGenre}" Click="Button_Click_1" Padding="10" Margin="10"/>
             <Button Content="AVG Rating By Genre" Command="{Binding AVGRatingByGenre}" Click="Button_Click_1" Padding="10" Margin="10"/>
-            <Button Content="All price By Year" Command="{Binding AllpriceByYears}" Click="Button_Click" Padding="10" Margin="10"/>
+            <Button Content="All price By Date" Command="{Binding AllpriceByYears}" Click="Button_Click" Padding="10" Margin="10"/>
         </StackPanel>
     </Grid>
 </Window>
